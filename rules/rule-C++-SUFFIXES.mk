@@ -1,0 +1,2 @@
+.SUFFIXES:
+.SUFFIXES: .cpp .o
