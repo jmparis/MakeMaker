@@ -9,4 +9,4 @@ $(SUBDIRS):
 
 #UPDATE_URL = 'https://raw.githubusercontent.com/jmparis/Makefiles/master/Makefile-folders.mk'
 #include ./.mk/rules/rule-update.mk
-include ./.mk/rules/rule-DEFAULT.mk
+include ${MKMK_HOME}/Makefiles/rules/rule-DEFAULT.mk
