@@ -1,12 +1,5 @@
-TOPTARGETS	:=	all clean clobber install uninstall help update
-SUBDIRS		:=	$(wildcard */.)
+ifndef MKMK_HOME
+$(error Error the variable 'MKMK_HOME' is not defined!)
+endif
 
-.PHONY:	$(TOPTARGETS) $(SUBDIRS)
-$(TOPTARGETS):	$(SUBDIRS)
-$(SUBDIRS):
-	@printf %.$(MAKELEVEL)b%b " " "\033[1;34m[\033[1;35m$@\033[1;34m]\033[0m\n"
-	@$(MAKE) --no-print-directory -C $@ $(MAKECMDGOALS)
-
-#UPDATE_URL = 'https://raw.githubusercontent.com/jmparis/Makefiles/master/Makefile-folders.mk'
-#include ./.mk/rules/rule-update.mk
-include ./.mk/rules/rule-DEFAULT.mk
+include ${MKMK_HOME}/Makefiles/wrappers/Folders/folders-targets.mk
