@@ -1,9 +1,9 @@
-BASEDIR	=	.
+BASEDIR	?=	.
 
-SRCDIR	=	$(BASEDIR)/src
-OBJDIR	=	$(BASEDIR)/obj
-DEPDIR	=	$(BASEDIR)/obj
-BINDIR	=	$(BASEDIR)/bin
+SRCDIR	?=	$(BASEDIR)/src
+OBJDIR	?=	$(BASEDIR)/obj
+DEPDIR	?=	$(BASEDIR)/obj
+BINDIR	?=	$(BASEDIR)/bin
 
 EXE		=	$(notdir    ${CURDIR})
 CPPFILES=	$(wildcard  $(SRCDIR)/*.cpp)
