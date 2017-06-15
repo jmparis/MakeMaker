@@ -7,7 +7,7 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    settings("./.mkmk/mkmk.ini", QSettings::IniFormat)
+    settings("./.mkmk.ini", QSettings::IniFormat)
 {
     ui->setupUi(this);
 
@@ -27,7 +27,7 @@ void MainWindow::readSettings()
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
 
     settings.beginGroup("MainWindow");
-    resize(settings.value("size", QSize (400, 400)).toSize());
+    resize(settings.value("size", QSize (485, 445)).toSize());
     move  (settings.value("pos" , QPoint(200, 200)).toPoint());
     settings.endGroup();
 
