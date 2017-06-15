@@ -1,4 +1,4 @@
-TOPTARGETS	:=	all clean clobber install uninstall help update
+TOPTARGETS	:=	all clean clobber install uninstall run help update
 SUBDIRS		:=	$(wildcard */.)
 
 .PHONY:	$(TOPTARGETS) $(SUBDIRS)
