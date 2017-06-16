@@ -35,7 +35,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
-    QSettings settings;
+    QSettings   settings;
+    QString     version;
 
 };
 

@@ -26,6 +26,10 @@ void MainWindow::readSettings()
 
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
 
+    settings.beginGroup("Version");
+    version = settings.value("version", "1.0.0").toString();
+    settings.endGroup();
+
     settings.beginGroup("MainWindow");
     resize(settings.value("size", QSize (485, 445)).toSize());
     move  (settings.value("pos" , QPoint(200, 200)).toPoint());
@@ -60,6 +64,10 @@ void MainWindow::readSettings()
     // Trace
     //
     std::cout << "Language" << std::endl;
+    std::cout << "[R] version = " << version.toStdString() << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "Language" << std::endl;
     std::cout << "[R] C++   = " << ui->rB_CPP  ->isChecked() << std::endl;
     std::cout << "[R] C     = " << ui->rB_C    ->isChecked() << std::endl;
     std::cout << "[R] 65x02 = " << ui->rB_65x02->isChecked() << std::endl;
@@ -88,8 +96,11 @@ void MainWindow::readSettings()
 void MainWindow::writeSettings()
 {
     //QSettings settings("./.mkmk/mkmk.ini", QSettings::IniFormat);
-
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
+
+    settings.beginGroup("Version");
+    settings.setValue("version", APP_VERSION);
+    settings.endGroup();
 
     settings.beginGroup("MainWindow");
     settings.setValue("size", size());
@@ -124,6 +135,10 @@ void MainWindow::writeSettings()
     //
     //  Trace
     //
+    std::cout << "Language" << std::endl;
+    std::cout << "[W] version  = " << version.toStdString() << std::endl;
+    std::cout << std::endl;
+
     std::cout << "Language" << std::endl;
     std::cout << "[W] C++   = " << ui->rB_CPP  ->isChecked() << std::endl;
     std::cout << "[W] C     = " << ui->rB_C    ->isChecked() << std::endl;
