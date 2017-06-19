@@ -21,15 +21,16 @@ VERSION_MINOR   =   1
 # 1 - options groups
 # 2 - settings saved
 
+# VERSION_BUILD
+# dynamically computed
 contains(QMAKE_HOST.os,Windows) {
-VERSION_BUILD   =   $$system(./autoincrementbuild.bat)
-TIME_BUILD  =   $$system(date +%Y-%m-%d_%Hh:%Mm:%Ss_%Z:%:z)
+VERSION_BUILD = $$system(.\autoincrementbuild.bat)
+TIME_BUILD    = $$system(echo %DATE%) $$system(echo %TIME%)
 }
 
-# dynamically computed
 contains(QMAKE_HOST.os,Linux) {
-VERSION_BUILD   =   $$system(./autoincrementbuild.sh)
-TIME_BUILD  =   $$system(date +%Y-%m-%d_%Hh:%Mm:%Ss_%Z:%:z)
+VERSION_BUILD = $$system(./autoincrementbuild.sh)
+TIME_BUILD    = $$system(date +%Y-%m-%d_%Hh:%Mm:%Ss_%Z:%:z)
 }
 
 VERSION =   $${VERSION_MAJOR}.$${VERSION_MINOR}.$${VERSION_BUILD}
@@ -38,10 +39,12 @@ DEFINES +=  "VERSION_MAJOR=$$VERSION_MAJOR" \
             "VERSION_MINOR=$$VERSION_MINOR" \
             "VERSION_BUILD=$$VERSION_BUILD"
 
-DEFINES +=  "TIME_BUILD=\\\"$$TIME_BUILD\\\""
+DEFINES +=  "TIME_BUILD=\\\"$${TIME_BUILD}\\\""
 
-DEFINES +=  "APP_VERSION=\\\"$$VERSION\\\""
+DEFINES +=  "APP_VERSION=\\\"$${VERSION}\\\""
 DEFINES +=  "APP_NAME=\\\"mkmk\\\""
+
+message($$DEFINES)
 
 QT      +=  core gui
 
