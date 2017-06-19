@@ -1,0 +1,2 @@
+.SUFFIXES:
+.SUFFIXES: .go
