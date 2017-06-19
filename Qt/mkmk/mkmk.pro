@@ -22,7 +22,7 @@ VERSION_MINOR   =   1
 # 2 - settings saved
 
 contains(QMAKE_HOST.os,Windows) {
-VERSION_BUILD   =   9999
+VERSION_BUILD   =   $$system(./autoincrementbuild.bat)
 TIME_BUILD  =   $$system(date +%Y-%m-%d_%Hh:%Mm:%Ss_%Z:%:z)
 }
 
