@@ -8,7 +8,15 @@
 #include <fstream>
 
 #include <sys/stat.h>
+
+#ifdef  Q_OS_LINUX
 #include <unistd.h>
+#endif//Q_OS_LINUX
+
+#ifdef  Q_OS_WIN
+#include <io.h>
+#endif//Q_OS_WIN
+
 #include <string>
 #include <ctime>
 #include <iomanip>

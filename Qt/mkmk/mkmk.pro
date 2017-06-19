@@ -23,6 +23,7 @@ VERSION_MINOR   =   1
 
 contains(QMAKE_HOST.os,Windows) {
 VERSION_BUILD   =   9999
+TIME_BUILD  =   $$system(date +%Y-%m-%d_%Hh:%Mm:%Ss_%Z:%:z)
 }
 
 # dynamically computed
