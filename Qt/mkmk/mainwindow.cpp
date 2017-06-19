@@ -43,58 +43,39 @@ void MainWindow::readSettings()
     //QSettings settings("./.mkmk/mkmk.ini", QSettings::IniFormat);
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
 
-    settings.beginGroup("Version");
-    version = settings.value("version", "1.0.0").toString();
+    settings.beginGroup("Version");                                                 qDebug() << QString("version");
+    version = settings.value("version", "1.0.0").toString();                        qDebug() << QString(" [R] version = ") + QString(version);
     settings.endGroup();
-    qDebug() << QString("version");
-    qDebug() << QString(" [R] version = ") + QString(version);
 
     settings.beginGroup("MainWindow");
     resize(settings.value("size", QSize (500, 500)).toSize());
     move  (settings.value("pos" , QPoint(200, 200)).toPoint());
     settings.endGroup();
 
-    settings.beginGroup("Languages");
-    ui->rB_CPP  ->setChecked(settings.value( "C++"  , false).toBool());
-    ui->rB_C    ->setChecked(settings.value( "C"    , false).toBool());
-    ui->rB_65x02->setChecked(settings.value( "65x02", false).toBool());
+    settings.beginGroup("Languages");                                               qDebug() << QString("Language");
+    ui->rB_CPP  ->setChecked(settings.value( "C++"  , false).toBool());             qDebug() << QString(" [R] C++   = ") << ui->rB_CPP  ->isChecked();
+    ui->rB_C    ->setChecked(settings.value( "C"    , false).toBool());             qDebug() << QString(" [R] C     = ") << ui->rB_C    ->isChecked();
+    ui->rB_65x02->setChecked(settings.value( "65x02", false).toBool());             qDebug() << QString(" [R] 65x02 = ") << ui->rB_65x02->isChecked();
     settings.endGroup();
-    qDebug() << QString("Language");
-    qDebug() << QString(" [R] C++   = ") << ui->rB_CPP  ->isChecked();
-    qDebug() << QString(" [R] C     = ") << ui->rB_C    ->isChecked();
-    qDebug() << QString(" [R] 65x02 = ") << ui->rB_65x02->isChecked();
 
-    settings.beginGroup("Binary");
-    ui->rB_Executable->setChecked(settings.value( "Executable", false).toBool());
-    ui->rB_Library   ->setChecked(settings.value( "Library"   , false).toBool());
+    settings.beginGroup("Binary");                                                  qDebug() << QString("Binary");
+    ui->rB_Executable->setChecked(settings.value( "Executable", false).toBool());   qDebug() << QString(" [R] Executable = ") << ui->rB_Executable->isChecked();
+    ui->rB_Library   ->setChecked(settings.value( "Library"   , false).toBool());   qDebug() << QString(" [R] Library    = ") << ui->rB_Library   ->isChecked();
     settings.endGroup();
-    qDebug() << QString("Binary");
-    qDebug() << QString(" [R] Executable = ") << ui->rB_Executable->isChecked();
-    qDebug() << QString(" [R] Library    = ") << ui->rB_Library   ->isChecked();
 
-    settings.beginGroup("Folders");
-    ui->lE_BASEDIR->setText(settings.value("BASEDIR", "./" ).toString());
-    ui-> lE_SRCDIR->setText(settings.value( "SRCDIR", "src").toString());
-    ui-> lE_OBJDIR->setText(settings.value( "OBJDIR", "obj").toString());
-    ui-> lE_DEPDIR->setText(settings.value( "DEPDIR", "obj").toString());
-    ui-> lE_BINDIR->setText(settings.value( "BINDIR", "bin").toString());
+    settings.beginGroup("Folders");                                                 qDebug() << QString("Folders");
+    ui->lE_BASEDIR->setText(settings.value("BASEDIR", "./" ).toString());           qDebug() << QString(" [R] BASEDIR = ") + QString( ui->lE_BASEDIR->text() );
+    ui-> lE_SRCDIR->setText(settings.value( "SRCDIR", "src").toString());           qDebug() << QString(" [R]  SRCDIR = ") + QString( ui-> lE_SRCDIR->text() );
+    ui-> lE_OBJDIR->setText(settings.value( "OBJDIR", "obj").toString());           qDebug() << QString(" [R]  OBJDIR = ") + QString( ui-> lE_OBJDIR->text() );
+    ui-> lE_DEPDIR->setText(settings.value( "DEPDIR", "obj").toString());           qDebug() << QString(" [R]  DEPDIR = ") + QString( ui-> lE_DEPDIR->text() );
+    ui-> lE_BINDIR->setText(settings.value( "BINDIR", "bin").toString());           qDebug() << QString(" [R]  BINDIR = ") + QString( ui-> lE_BINDIR->text() );
     settings.endGroup();
-    qDebug() << QString("Folders");
-    qDebug() << QString(" [R] BASEDIR = ") + QString( ui->lE_BASEDIR->text() );
-    qDebug() << QString(" [R]  SRCDIR = ") + QString( ui-> lE_SRCDIR->text() );
-    qDebug() << QString(" [R]  OBJDIR = ") + QString( ui-> lE_OBJDIR->text() );
-    qDebug() << QString(" [R]  DEPDIR = ") + QString( ui-> lE_DEPDIR->text() );
-    qDebug() << QString(" [R]  BINDIR = ") + QString( ui-> lE_BINDIR->text() );
 
-    settings.beginGroup("CompilerFlags");
-    ui->lE_DBG->setText(settings.value( "DBG", "-g3 -DDEBUG_ALL").toString());
-    ui->lE_REL->setText(settings.value( "REL", "-O2"            ).toString());
-    ui->lE_PRD->setText(settings.value( "PRD", "-O3"            ).toString());
+    settings.beginGroup("CompilerFlags");                                           qDebug() << QString("Compiler Flags");
+    ui->lE_DBG->setText(settings.value( "DBG", "-g3 -DDEBUG_ALL").toString());      qDebug() << QString(" [R] Debug      Flags = ") + QString( ui->lE_DBG->text() );
+    ui->lE_REL->setText(settings.value( "REL", "-O2"            ).toString());      qDebug() << QString(" [R] Release    Flags = ") + QString( ui->lE_REL->text() );
+    ui->lE_PRD->setText(settings.value( "PRD", "-O3"            ).toString());      qDebug() << QString(" [R] Production Flags = ") + QString( ui->lE_PRD->text() );
     settings.endGroup();
-    qDebug() << QString("Compiler Flags");
-    qDebug() << QString(" [R] Debug      Flags = ") + QString( ui->lE_DBG->text() );
-    qDebug() << QString(" [R] Release    Flags = ") + QString( ui->lE_REL->text() );
-    qDebug() << QString(" [R] Production Flags = ") + QString( ui->lE_PRD->text() );
 }
 
 void MainWindow::writeSettings()
