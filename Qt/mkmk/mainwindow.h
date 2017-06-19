@@ -23,7 +23,8 @@ private:
     void readSettings();
     void writeSettings();
     void closeEvent(QCloseEvent *event);
-    bool userReallyWantsToQuit();
+    bool askUser( const QString & );
+inline bool fexists (const std::string& name);
 
 private slots:
     void on_pB_Create_clicked();
@@ -31,6 +32,12 @@ private slots:
     void on_actionQuit_triggered();
 
     void on_actionAbout_triggered();
+
+    void on_rB_CPP_clicked();
+
+    void on_rB_C_clicked();
+
+    void on_rB_65x02_clicked();
 
 private:
     Ui::MainWindow *ui;

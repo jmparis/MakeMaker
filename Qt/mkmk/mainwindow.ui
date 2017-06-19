@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>461</width>
-    <height>482</height>
+    <height>495</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,7 +18,7 @@
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>370</y>
+      <y>360</y>
       <width>103</width>
       <height>32</height>
      </rect>
@@ -33,7 +33,7 @@
       <x>0</x>
       <y>0</y>
       <width>461</width>
-      <height>361</height>
+      <height>351</height>
      </rect>
     </property>
     <property name="currentIndex">
@@ -59,7 +59,7 @@ QLineEdit    { background-color: white; }</string>
       <property name="title">
        <string>Language</string>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_A">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -111,7 +111,7 @@ QLineEdit    { background-color: white; }</string>
         <x>110</x>
         <y>10</y>
         <width>131</width>
-        <height>101</height>
+        <height>131</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -121,7 +121,7 @@ QLineEdit    { background-color: white; }</string>
       <property name="title">
        <string>Binary</string>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_B">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -227,12 +227,18 @@ QLineEdit    { background-color: white; }</string>
         <height>201</height>
        </rect>
       </property>
+      <property name="toolTip">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Extra libs&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
       <property name="styleSheet">
        <string notr="true">QGroupBox {background-color: #EEE; }
 QLineEdit    { background-color: white; }</string>
       </property>
       <property name="title">
        <string>SDL2 librairies</string>
+      </property>
+      <property name="checkable">
+       <bool>false</bool>
       </property>
       <widget class="QWidget" name="layoutWidget_3">
        <property name="geometry">
@@ -248,6 +254,9 @@ QLineEdit    { background-color: white; }</string>
          <widget class="QCheckBox" name="cB_SDL2">
           <property name="text">
            <string>SDL2</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -321,7 +330,7 @@ QLineEdit    { background-color: white; }</string>
       <property name="checkable">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_C">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -500,7 +509,7 @@ QLineEdit    { background-color: white; }</string>
       <property name="title">
        <string>Compiler Flags</string>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="layoutWidget_D">
        <property name="geometry">
         <rect>
          <x>10</x>
