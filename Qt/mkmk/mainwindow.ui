@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Mkmk</string>
+   <string>mkmk</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="pB_Create">
@@ -745,7 +745,7 @@ QLineEdit    { background-color: white; }</string>
      <x>0</x>
      <y>0</y>
      <width>461</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
