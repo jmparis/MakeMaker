@@ -4,6 +4,12 @@
 #
 #-------------------------------------------------
 
+CONFIG(release, debug|release) {
+    #This is a release build
+    DEFINES += QT_NO_DEBUG_OUTPUT
+}
+
+
 #
 # Application Version
 #

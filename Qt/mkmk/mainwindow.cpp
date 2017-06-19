@@ -12,7 +12,7 @@
 #include <string>
 #include <ctime>
 #include <iomanip>
-
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,12 +33,13 @@ MainWindow::~MainWindow()
 void MainWindow::readSettings()
 {
     //QSettings settings("./.mkmk/mkmk.ini", QSettings::IniFormat);
-
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
 
     settings.beginGroup("Version");
     version = settings.value("version", "1.0.0").toString();
     settings.endGroup();
+    qDebug() << QString("version");
+    qDebug() << QString(" [R] version = ") + QString(version);
 
     settings.beginGroup("MainWindow");
     resize(settings.value("size", QSize (500, 500)).toSize());
@@ -50,11 +51,18 @@ void MainWindow::readSettings()
     ui->rB_C    ->setChecked(settings.value( "C"    , false).toBool());
     ui->rB_65x02->setChecked(settings.value( "65x02", false).toBool());
     settings.endGroup();
+    qDebug() << QString("Language");
+    qDebug() << QString(" [R] C++   = ") << ui->rB_CPP  ->isChecked();
+    qDebug() << QString(" [R] C     = ") << ui->rB_C    ->isChecked();
+    qDebug() << QString(" [R] 65x02 = ") << ui->rB_65x02->isChecked();
 
     settings.beginGroup("Binary");
     ui->rB_Executable->setChecked(settings.value( "Executable", false).toBool());
     ui->rB_Library   ->setChecked(settings.value( "Library"   , false).toBool());
     settings.endGroup();
+    qDebug() << QString("Binary");
+    qDebug() << QString(" [R] Executable = ") << ui->rB_Executable->isChecked();
+    qDebug() << QString(" [R] Library    = ") << ui->rB_Library   ->isChecked();
 
     settings.beginGroup("Folders");
     ui->lE_BASEDIR->setText(settings.value("BASEDIR", "./" ).toString());
@@ -63,46 +71,22 @@ void MainWindow::readSettings()
     ui-> lE_DEPDIR->setText(settings.value( "DEPDIR", "obj").toString());
     ui-> lE_BINDIR->setText(settings.value( "BINDIR", "bin").toString());
     settings.endGroup();
+    qDebug() << QString("Folders");
+    qDebug() << QString(" [R] BASEDIR = ") + QString( ui->lE_BASEDIR->text() );
+    qDebug() << QString(" [R]  SRCDIR = ") + QString( ui-> lE_SRCDIR->text() );
+    qDebug() << QString(" [R]  OBJDIR = ") + QString( ui-> lE_OBJDIR->text() );
+    qDebug() << QString(" [R]  DEPDIR = ") + QString( ui-> lE_DEPDIR->text() );
+    qDebug() << QString(" [R]  BINDIR = ") + QString( ui-> lE_BINDIR->text() );
 
     settings.beginGroup("CompilerFlags");
     ui->lE_DBG->setText(settings.value( "DBG", "-g3 -DDEBUG_ALL").toString());
     ui->lE_REL->setText(settings.value( "REL", "-O2"            ).toString());
     ui->lE_PRD->setText(settings.value( "PRD", "-O3"            ).toString());
     settings.endGroup();
-
-    //
-    // Trace
-    //
-    /*
-    std::cout << "Language" << std::endl;
-    std::cout << "[R] version = " << version.toStdString() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Language" << std::endl;
-    std::cout << "[R] C++   = " << ui->rB_CPP  ->isChecked() << std::endl;
-    std::cout << "[R] C     = " << ui->rB_C    ->isChecked() << std::endl;
-    std::cout << "[R] 65x02 = " << ui->rB_65x02->isChecked() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Binary" << std::endl;
-    std::cout << "[R] Executable = " << ui->rB_Executable->isChecked() << std::endl;
-    std::cout << "[R] Library    = " << ui->rB_Library   ->isChecked() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Folders" << std::endl;
-    std::cout << "[R] BASEDIR = " << ui->lE_BASEDIR->text().toStdString() << std::endl;
-    std::cout << "[R]  SRCDIR = " << ui-> lE_SRCDIR->text().toStdString() << std::endl;
-    std::cout << "[R]  OBJDIR = " << ui-> lE_OBJDIR->text().toStdString() << std::endl;
-    std::cout << "[R]  DEPDIR = " << ui-> lE_DEPDIR->text().toStdString() << std::endl;
-    std::cout << "[R]  BINDIR = " << ui-> lE_BINDIR->text().toStdString() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Compiler Flags" << std::endl;
-    std::cout << "[R] Debug      Flags = " << ui->lE_DBG->text().toStdString() << std::endl;
-    std::cout << "[R] Release    Flags = " << ui->lE_REL->text().toStdString() << std::endl;
-    std::cout << "[R] Production Flags = " << ui->lE_PRD->text().toStdString() << std::endl;
-    std::cout << std::endl;
-    */
+    qDebug() << QString("Compiler Flags");
+    qDebug() << QString(" [R] Debug      Flags = ") + QString( ui->lE_DBG->text() );
+    qDebug() << QString(" [R] Release    Flags = ") + QString( ui->lE_REL->text() );
+    qDebug() << QString(" [R] Production Flags = ") + QString( ui->lE_PRD->text() );
 }
 
 void MainWindow::writeSettings()

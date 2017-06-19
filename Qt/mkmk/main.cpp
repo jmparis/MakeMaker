@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     QCoreApplication::setOrganizationDomain("mkmk.com");
     QCoreApplication::setApplicationName   ("Mkmk"    );
 
-    qDebug() << QString("version = ") + QString(APP_VERSION);
+    qDebug() << QString("APP_VERSION = ") + QString(APP_VERSION) << '\n';
 
     MainWindow w;
     w.show();
