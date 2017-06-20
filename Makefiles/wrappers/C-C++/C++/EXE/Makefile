@@ -3,4 +3,4 @@ $(error Error the variable 'MKMK_HOME' is not defined!)
 endif
 
 LANG=C++
-include ${MKMK_HOME}/Makefiles/wrappers/C-C++/C-C++-EXE.mk
+include ${MKMK_HOME}/Makefiles/skeleton/skel-C-${LANG}-EXE.mk

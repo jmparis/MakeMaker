@@ -1,5 +1,5 @@
 include ${MKMK_HOME}/Makefiles/rules/$(LANG)/rule-SUFFIXES.mk
-#-include ./.makefile.mk
+-include ./.mkmk/config*.mk
 include ${MKMK_HOME}/Makefiles/rules/$(LANG)/rule-CORE.mk
 include ${MKMK_HOME}/Makefiles/rules/rule-clean.mk
 include ${MKMK_HOME}/Makefiles/rules/rule-install-uninstall.mk
