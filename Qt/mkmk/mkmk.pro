@@ -25,7 +25,7 @@ VERSION_MINOR   =   1
 # dynamically computed
 contains(QMAKE_HOST.os,Windows) {
 VERSION_BUILD = $$system(.\autoincrementbuild.bat)
-TIME_BUILD    = $$system(echo %DATE%) $$system(echo %TIME%)
+TIME_BUILD    = $$system(echo %DATE%)_$$system(echo %TIME%)
 }
 
 contains(QMAKE_HOST.os,Linux) {
