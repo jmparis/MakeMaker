@@ -39,6 +39,8 @@ private slots:
 
     void on_rB_65x02_clicked();
 
+    void on_rB_Folders_clicked();
+
 private:
     Ui::MainWindow *ui;
 

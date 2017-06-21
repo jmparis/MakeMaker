@@ -256,15 +256,47 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_rB_CPP_clicked()
 {
+    ui->gB_Binary     ->setDisabled(false);
+    ui->gB_Environment->setDisabled(false);
+
+    ui->rB_Folders->setChecked(false);
+
+    // (re)Activate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(false);
 }
 
 void MainWindow::on_rB_C_clicked()
 {
+    ui->gB_Binary     ->setDisabled(false);
+    ui->gB_Environment->setDisabled(false);
+
+    ui->rB_Folders->setChecked(false);
+
+    // (re)Activate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(false);
 }
 
 void MainWindow::on_rB_65x02_clicked()
 {
+    // Reactivate bin & env
+    ui->gB_Binary     ->setDisabled(false);
+    ui->gB_Environment->setDisabled(false);
+
+    // Deactivate Folders
+    ui->rB_Folders->setChecked(false);
+
+    // (Deactivate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(true);
+}
+
+void MainWindow::on_rB_Folders_clicked()
+{
+    // clear any previous language selection
+    ui->rB_CPP  ->setChecked(false);
+    ui->rB_C    ->setChecked(false);
+    ui->rB_65x02->setChecked(false);
+
+    // Disable the secondary settings for languages
+    ui->gB_Binary     ->setDisabled(true);
+    ui->gB_Environment->setDisabled(true);
 }
