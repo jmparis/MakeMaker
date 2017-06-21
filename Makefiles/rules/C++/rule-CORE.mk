@@ -1,15 +1,31 @@
 V		?=	0
+E		?=	P
+
+ifeq	($(findstring P,$(E)),P)
+ENV		=	Production
+endif
+
+ifeq	($(findstring R,$(E)),R)
+ENV		=	Release
+endif
+
+ifeq	($(findstring D,$(E)),D)
+ENV		=	Debug
+endif
+
 BASEDIR	?=	.
+HOSTNAME:=	$(shell hostname)
 
 SRCDIR	?=	$(BASEDIR)/src
-OBJDIR	?=	$(BASEDIR)/obj
-DEPDIR	?=	$(BASEDIR)/dep
-BINDIR	?=	$(BASEDIR)/bin
+OBJDIR	?=	$(BASEDIR)/build-$(HOSTNAME)-$(ENV)/obj
+DEPDIR	?=	$(BASEDIR)/build-$(HOSTNAME)-$(ENV)/dep
+BINDIR	?=	$(BASEDIR)/build-$(HOSTNAME)-$(ENV)/bin
 
 EXE		=	$(notdir    ${CURDIR})
 CPPFILES=	$(wildcard  $(SRCDIR)/*.cpp)
 OBJFILES=	$(addprefix $(OBJDIR)/,$(notdir $(CPPFILES:.cpp=.o)))
-DEPFILES=	$(OBJFILES:.o=.d)
+DEPFILES=	$(addprefix $(DEPDIR)/,$(notdir $(CPPFILES:.cpp=.d)))
+#DEPFILES=	$(OBJFILES:.o=.d)
 DEPFLAGS=	-MM -MT '$@'
 DEPEND.cpp = $(CXX)  $(DEPFLAGS) $(CXXFLAGS) $(CPPFLAGS) $(TARGET_ARCH)
 
@@ -48,10 +64,10 @@ $(OBJDIR)/%.o:	$(SRCDIR)/%.cpp | $(OBJDIR) $(DEPDIR)
 -include $(DEPFILES)
 
 $(OBJDIR):
-	@mkdir	$(OBJDIR)
+	@mkdir	-p	$(OBJDIR)
 
 $(DEPDIR):
-	@mkdir	$(DEPDIR)
+	@mkdir	-p	$(DEPDIR)
 
 $(BINDIR):
-	@mkdir	$(BINDIR)
+	@mkdir	-p	$(BINDIR)
