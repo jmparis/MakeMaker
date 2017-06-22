@@ -43,55 +43,13 @@
      <attribute name="title">
       <string>Makefile</string>
      </attribute>
-     <widget class="QGroupBox" name="gB_Other">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>160</y>
-        <width>101</width>
-        <height>131</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox {background-color: #EEE; }
-QLineEdit    { background-color: white; }</string>
-      </property>
-      <property name="title">
-       <string>Other</string>
-      </property>
-      <widget class="QWidget" name="layoutWidget_A_2">
-       <property name="geometry">
-        <rect>
-         <x>10</x>
-         <y>30</y>
-         <width>71</width>
-         <height>31</height>
-        </rect>
-       </property>
-       <layout class="QVBoxLayout" name="vL_Other">
-        <item>
-         <widget class="QRadioButton" name="rB_Folders">
-          <property name="enabled">
-           <bool>true</bool>
-          </property>
-          <property name="text">
-           <string>Folders</string>
-          </property>
-          <property name="checked">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-     </widget>
      <widget class="QGroupBox" name="gB_Environment">
       <property name="geometry">
        <rect>
         <x>270</x>
         <y>10</y>
         <width>121</width>
-        <height>131</height>
+        <height>151</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -153,7 +111,7 @@ QLineEdit    { background-color: white; }</string>
         <x>120</x>
         <y>10</y>
         <width>131</width>
-        <height>131</height>
+        <height>121</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -169,7 +127,7 @@ QLineEdit    { background-color: white; }</string>
          <x>10</x>
          <y>30</y>
          <width>108</width>
-         <height>58</height>
+         <height>71</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="vL_Binary">
@@ -199,7 +157,7 @@ QLineEdit    { background-color: white; }</string>
         <x>10</x>
         <y>10</y>
         <width>91</width>
-        <height>131</height>
+        <height>221</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -215,7 +173,7 @@ QLineEdit    { background-color: white; }</string>
          <x>10</x>
          <y>30</y>
          <width>71</width>
-         <height>91</height>
+         <height>171</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="vL_Language">
@@ -243,9 +201,69 @@ QLineEdit    { background-color: white; }</string>
          </widget>
         </item>
         <item>
+         <widget class="QRadioButton" name="rB_Go">
+          <property name="text">
+           <string>Go</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QRadioButton" name="rB_65x02">
           <property name="text">
            <string>65x02</string>
+          </property>
+          <property name="checked">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="rB_Folders">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="palette">
+           <palette>
+            <active>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>170</red>
+                <green>0</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </active>
+            <inactive>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="255">
+                <red>170</red>
+                <green>0</green>
+                <blue>255</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </inactive>
+            <disabled>
+             <colorrole role="WindowText">
+              <brush brushstyle="SolidPattern">
+               <color alpha="96">
+                <red>164</red>
+                <green>166</green>
+                <blue>168</blue>
+               </color>
+              </brush>
+             </colorrole>
+            </disabled>
+           </palette>
+          </property>
+          <property name="text">
+           <string>Folders</string>
           </property>
           <property name="checked">
            <bool>false</bool>
@@ -266,7 +284,7 @@ QLineEdit    { background-color: white; }</string>
         <x>10</x>
         <y>10</y>
         <width>131</width>
-        <height>201</height>
+        <height>211</height>
        </rect>
       </property>
       <property name="toolTip">
@@ -288,7 +306,7 @@ QLineEdit    { background-color: white; }</string>
          <x>10</x>
          <y>30</y>
          <width>108</width>
-         <height>161</height>
+         <height>171</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="vL_SDL2_Librairies">
@@ -338,7 +356,7 @@ QLineEdit    { background-color: white; }</string>
      <attribute name="title">
       <string>Settings</string>
      </attribute>
-     <widget class="QGroupBox" name="groupBox">
+     <widget class="QGroupBox" name="gB_Folders">
       <property name="geometry">
        <rect>
         <x>10</x>

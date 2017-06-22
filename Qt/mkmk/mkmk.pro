@@ -16,7 +16,7 @@ CONFIG(release, debug|release) {
 VERSION_MAJOR   =   0
 # 0 - The application is not yet functionnal
 
-VERSION_MINOR   =   1
+VERSION_MINOR   =   2
 # 0 - Raw mockup
 # 1 - options groups
 # 2 - settings saved

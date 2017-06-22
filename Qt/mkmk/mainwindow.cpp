@@ -53,9 +53,11 @@ void MainWindow::readSettings()
     settings.endGroup();
 
     settings.beginGroup("Languages");                                               qDebug() << QString("Language");
-    ui->rB_CPP  ->setChecked(settings.value( "C++"  , false).toBool());             qDebug() << QString(" [R] C++   = ") << ui->rB_CPP  ->isChecked();
-    ui->rB_C    ->setChecked(settings.value( "C"    , false).toBool());             qDebug() << QString(" [R] C     = ") << ui->rB_C    ->isChecked();
-    ui->rB_65x02->setChecked(settings.value( "65x02", false).toBool());             qDebug() << QString(" [R] 65x02 = ") << ui->rB_65x02->isChecked();
+    ui->rB_CPP    ->setChecked(settings.value( "C++"    , false).toBool());         qDebug() << QString(" [R] C++     = ") << ui->rB_CPP    ->isChecked();
+    ui->rB_C      ->setChecked(settings.value( "C"      , false).toBool());         qDebug() << QString(" [R] C       = ") << ui->rB_C      ->isChecked();
+    ui->rB_Go     ->setChecked(settings.value( "Go"     , false).toBool());         qDebug() << QString(" [R] Go      = ") << ui->rB_Go     ->isChecked();
+    ui->rB_65x02  ->setChecked(settings.value( "65x02"  , false).toBool());         qDebug() << QString(" [R] 65x02   = ") << ui->rB_65x02  ->isChecked();
+    ui->rB_Folders->setChecked(settings.value( "Folders", false).toBool());         qDebug() << QString(" [R] Folders = ") << ui->rB_Folders->isChecked();
     settings.endGroup();
 
     settings.beginGroup("Binary");                                                  qDebug() << QString("Binary");
@@ -71,10 +73,26 @@ void MainWindow::readSettings()
     ui-> lE_BINDIR->setText(settings.value( "BINDIR", "bin").toString());           qDebug() << QString(" [R]  BINDIR = ") + QString( ui-> lE_BINDIR->text() );
     settings.endGroup();
 
-    settings.beginGroup("CompilerFlags");                                           qDebug() << QString("Compiler Flags");
+    settings.beginGroup("CompilerFlags");                                           qDebug() << QString("CompilerFlags");
     ui->lE_DBG->setText(settings.value( "DBG", "-g3 -DDEBUG_ALL").toString());      qDebug() << QString(" [R] Debug      Flags = ") + QString( ui->lE_DBG->text() );
     ui->lE_REL->setText(settings.value( "REL", "-O2"            ).toString());      qDebug() << QString(" [R] Release    Flags = ") + QString( ui->lE_REL->text() );
     ui->lE_PRD->setText(settings.value( "PRD", "-O3"            ).toString());      qDebug() << QString(" [R] Production Flags = ") + QString( ui->lE_PRD->text() );
+    settings.endGroup();
+
+    settings.beginGroup("WarningFlags");                                            qDebug() << QString("WarningFlags");
+    ui->lE_WRN->setText(settings.value( "WRN", "-Wall -Wextra -Werror").toString());qDebug() << QString(" [R] WRN  = ") + QString( ui->lE_WRN->text() );
+    settings.endGroup();
+
+    settings.beginGroup("ExtraFlags");                                              qDebug() << QString("ExtraFlags");
+    ui->lE_XTRA->setText(settings.value( "XTRA", "").toString());                   qDebug() << QString(" [R] XTRA = ") + QString( ui->lE_XTRA->text() );
+    settings.endGroup();
+
+    settings.beginGroup("SDL2-Libraries");                                          qDebug() << QString("SDL2-Libraries");
+    ui->cB_SDL2      ->setChecked(settings.value( "SDL2"      , false).toBool());   qDebug() << QString(" [R] SDL2       = ") << ui->cB_SDL2      ->isChecked();
+    ui->cB_SDL2_image->setChecked(settings.value( "SDL2_image", false).toBool());   qDebug() << QString(" [R] SDL2_image = ") << ui->cB_SDL2_image->isChecked();
+    ui->cB_SDL2_mixer->setChecked(settings.value( "SDL2_mixer", false).toBool());   qDebug() << QString(" [R] SDL2_mixer = ") << ui->cB_SDL2_mixer->isChecked();
+    ui->cB_SDL2_net  ->setChecked(settings.value( "SDL2_net"  , false).toBool());   qDebug() << QString(" [R] SDL2_net   = ") << ui->cB_SDL2_net  ->isChecked();
+    ui->cB_SDL2_ttf  ->setChecked(settings.value( "SDL2_ttf"  , false).toBool());   qDebug() << QString(" [R] SDL2_ttf   = ") << ui->cB_SDL2_ttf  ->isChecked();
     settings.endGroup();
 }
 
@@ -83,73 +101,57 @@ void MainWindow::writeSettings()
     //QSettings settings("./.mkmk/mkmk.ini", QSettings::IniFormat);
     //QSettings settings(QSettings::IniFormat, QSettings::UserScope, "Mkmk", "mkmk");
 
-    settings.beginGroup("Version");
-    settings.setValue("version", APP_VERSION);
+    settings.beginGroup("Version");                                                 qDebug() << QString("version");
+    settings.setValue("version", APP_VERSION);                                      qDebug() << QString(" [W] version = ") + QString(version);
     settings.endGroup();
 
-    settings.beginGroup("MainWindow");
-    settings.setValue("size", size());
-    settings.setValue("pos" , pos() );
+    settings.beginGroup("MainWindow");                                              qDebug() << QString("MainWindow");
+    settings.setValue("size", size());                                              qDebug() << QString(" [W] size = ") << size();
+    settings.setValue("pos" , pos() );                                              qDebug() << QString(" [W] pos  = ") << pos();
     settings.endGroup();
 
-    settings.beginGroup("Languages");
-    settings.setValue("C++"  , ui->rB_CPP  ->isChecked());
-    settings.setValue("C"    , ui->rB_C    ->isChecked());
-    settings.setValue("65x02", ui->rB_65x02->isChecked());
+    settings.beginGroup("Languages");                                               qDebug() << QString("Languages");
+    settings.setValue("C++"    , ui->rB_CPP    ->isChecked());                      qDebug() << QString(" [W] C++     = ") << ui->rB_CPP    ->isChecked();
+    settings.setValue("C"      , ui->rB_C      ->isChecked());                      qDebug() << QString(" [W] C       = ") << ui->rB_C      ->isChecked();
+    settings.setValue("Go"     , ui->rB_Go     ->isChecked());                      qDebug() << QString(" [W] Go      = ") << ui->rB_Go     ->isChecked();
+    settings.setValue("65x02"  , ui->rB_65x02  ->isChecked());                      qDebug() << QString(" [W] 65x02   = ") << ui->rB_65x02  ->isChecked();
+    settings.setValue("Folders", ui->rB_Folders->isChecked());                      qDebug() << QString(" [W] Folders = ") << ui->rB_Folders->isChecked();
     settings.endGroup();
 
-    settings.beginGroup("Binary");
-    settings.setValue("Executable", ui->rB_Executable->isChecked());
-    settings.setValue("Library"   , ui->rB_Library   ->isChecked());
+    settings.beginGroup("Binary");                                                  qDebug() << QString("Binary");
+    settings.setValue("Executable", ui->rB_Executable->isChecked());                qDebug() << QString(" [W] Executable = ") << ui->rB_Executable->isChecked();
+    settings.setValue("Library"   , ui->rB_Library   ->isChecked());                qDebug() << QString(" [W] Library    = ") << ui->rB_Library   ->isChecked();
     settings.endGroup();
 
-    settings.beginGroup("Folders");
-    settings.setValue("BASEDIR", ui->lE_BASEDIR->text());
-    settings.setValue( "SRCDIR", ui-> lE_SRCDIR->text());
-    settings.setValue( "OBJDIR", ui-> lE_OBJDIR->text());
-    settings.setValue( "DEPDIR", ui-> lE_DEPDIR->text());
-    settings.setValue( "BINDIR", ui-> lE_BINDIR->text());
+    settings.beginGroup("Folders");                                                 qDebug() << QString("Folders");
+    settings.setValue("BASEDIR", ui->lE_BASEDIR->text());                           qDebug() << QString(" [W] BASEDIR = ") << ui->lE_BASEDIR->text();
+    settings.setValue( "SRCDIR", ui-> lE_SRCDIR->text());                           qDebug() << QString(" [W]  SRCDIR = ") << ui->lE_SRCDIR ->text();
+    settings.setValue( "OBJDIR", ui-> lE_OBJDIR->text());                           qDebug() << QString(" [W]  OBJDIR = ") << ui->lE_OBJDIR ->text();
+    settings.setValue( "DEPDIR", ui-> lE_DEPDIR->text());                           qDebug() << QString(" [W]  DEPDIR = ") << ui->lE_DEPDIR ->text();
+    settings.setValue( "BINDIR", ui-> lE_BINDIR->text());                           qDebug() << QString(" [W]  BINDIR = ") << ui->lE_BINDIR ->text();
     settings.endGroup();
 
-    settings.beginGroup("CompilerFlags");
-    settings.setValue("DBG", ui->lE_DBG->text());
-    settings.setValue("REL", ui->lE_REL->text());
-    settings.setValue("PRD", ui->lE_PRD->text());
+    settings.beginGroup("CompilerFlags");                                           qDebug() << QString("CompilerFlags");
+    settings.setValue("DBG", ui->lE_DBG->text());                                   qDebug() << QString(" [W] DBG = ") << ui->lE_DBG->text();
+    settings.setValue("REL", ui->lE_REL->text());                                   qDebug() << QString(" [W] REL = ") << ui->lE_REL->text();
+    settings.setValue("PRD", ui->lE_PRD->text());                                   qDebug() << QString(" [W] PRD = ") << ui->lE_PRD->text();
     settings.endGroup();
 
-    //
-    //  Trace
-    //
-    /*
-    std::cout << "Language" << std::endl;
-    std::cout << "[W] version  = " << version.toStdString() << std::endl;
-    std::cout << std::endl;
+    settings.beginGroup("WarningFlags");                                            qDebug() << QString("WarningFlags");
+    settings.setValue("WRN", ui->lE_WRN->text());                                   qDebug() << QString(" [W] WRN  = ") << ui->lE_WRN->text();
+    settings.endGroup();
 
-    std::cout << "Language" << std::endl;
-    std::cout << "[W] C++   = " << ui->rB_CPP  ->isChecked() << std::endl;
-    std::cout << "[W] C     = " << ui->rB_C    ->isChecked() << std::endl;
-    std::cout << "[W] 65x02 = " << ui->rB_65x02->isChecked() << std::endl;
-    std::cout << std::endl;
+    settings.beginGroup("ExtraFlags");                                              qDebug() << QString("ExtraFlags");
+    settings.setValue("XTRA", ui->lE_XTRA->text());                                 qDebug() << QString(" [W] XTRA = ") << ui->lE_XTRA->text();
+    settings.endGroup();
 
-    std::cout << "Binary" << std::endl;
-    std::cout << "[W] Executable = " << ui->rB_Executable->isChecked() << std::endl;
-    std::cout << "[W] Library    = " << ui->rB_Library   ->isChecked() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Folders" << std::endl;
-    std::cout << "[W] BASEDIR = " << ui->lE_BASEDIR->text().toStdString() << std::endl;
-    std::cout << "[W]  SRCDIR = " << ui-> lE_SRCDIR->text().toStdString() << std::endl;
-    std::cout << "[W]  OBJDIR = " << ui-> lE_OBJDIR->text().toStdString() << std::endl;
-    std::cout << "[W]  DEPDIR = " << ui-> lE_DEPDIR->text().toStdString() << std::endl;
-    std::cout << "[W]  BINDIR = " << ui-> lE_BINDIR->text().toStdString() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "Compiler Flags" << std::endl;
-    std::cout << "[W]  Debug      Flags = " << ui-> lE_DBG->text().toStdString() << std::endl;
-    std::cout << "[W]  Release    Flags = " << ui-> lE_REL->text().toStdString() << std::endl;
-    std::cout << "[W]  Production Flags = " << ui-> lE_PRD->text().toStdString() << std::endl;
-    std::cout << std::endl;
-    */
+    settings.beginGroup("SDL2-Libraries");                                          qDebug() << QString("SDL2-Libraries");
+    settings.setValue("SDL2"      , ui->cB_SDL2      ->isChecked());                qDebug() << QString(" [W] SDL2       = ") << ui->cB_SDL2      ->isChecked();
+    settings.setValue("SDL2_image", ui->cB_SDL2_image->isChecked());                qDebug() << QString(" [W] SDL2_image = ") << ui->cB_SDL2_image->isChecked();
+    settings.setValue("SDL2_mixer", ui->cB_SDL2_mixer->isChecked());                qDebug() << QString(" [W] SDL2_mixer = ") << ui->cB_SDL2_mixer->isChecked();
+    settings.setValue("SDL2_net"  , ui->cB_SDL2_net  ->isChecked());                qDebug() << QString(" [W] SDL2_net   = ") << ui->cB_SDL2_net  ->isChecked();
+    settings.setValue("SDL2_ttf"  , ui->cB_SDL2_ttf  ->isChecked());                qDebug() << QString(" [W] SDL2_ttf   = ") << ui->cB_SDL2_ttf  ->isChecked();
+    settings.endGroup();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
@@ -256,10 +258,9 @@ void MainWindow::on_actionAbout_triggered()
 
 void MainWindow::on_rB_CPP_clicked()
 {
+    // Reactivate bin & env
     ui->gB_Binary     ->setDisabled(false);
     ui->gB_Environment->setDisabled(false);
-
-    ui->rB_Folders->setChecked(false);
 
     // (re)Activate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(false);
@@ -267,23 +268,29 @@ void MainWindow::on_rB_CPP_clicked()
 
 void MainWindow::on_rB_C_clicked()
 {
+    // Reactivate bin & env
     ui->gB_Binary     ->setDisabled(false);
     ui->gB_Environment->setDisabled(false);
-
-    ui->rB_Folders->setChecked(false);
 
     // (re)Activate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(false);
 }
 
+void MainWindow::on_rB_Go_clicked()
+{
+    // Disable the secondary settings for languages
+    ui->gB_Binary     ->setDisabled(true);
+    ui->gB_Environment->setDisabled(true);
+
+    // (Deactivate SDL2 extra libs
+    ui->gB_SDL2_Librairies->setDisabled(true);
+}
+
 void MainWindow::on_rB_65x02_clicked()
 {
     // Reactivate bin & env
-    ui->gB_Binary     ->setDisabled(false);
-    ui->gB_Environment->setDisabled(false);
-
-    // Deactivate Folders
-    ui->rB_Folders->setChecked(false);
+    ui->gB_Binary     ->setDisabled(true);
+    ui->gB_Environment->setDisabled(true);
 
     // (Deactivate SDL2 extra libs
     ui->gB_SDL2_Librairies->setDisabled(true);
@@ -291,12 +298,10 @@ void MainWindow::on_rB_65x02_clicked()
 
 void MainWindow::on_rB_Folders_clicked()
 {
-    // clear any previous language selection
-    ui->rB_CPP  ->setChecked(false);
-    ui->rB_C    ->setChecked(false);
-    ui->rB_65x02->setChecked(false);
-
     // Disable the secondary settings for languages
     ui->gB_Binary     ->setDisabled(true);
     ui->gB_Environment->setDisabled(true);
+
+    // (Deactivate SDL2 extra libs
+    ui->gB_SDL2_Librairies->setDisabled(true);
 }
