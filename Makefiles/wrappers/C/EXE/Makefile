@@ -1,2 +1,20 @@
+#
+# Makefile by MakeMaker
+# 22/06/2017 16:38 CEST
+# C Executable wrapper
+#
+
+# Ensure we can compute the rest of the Makefile
+ifndef	MKMK_HOME
+$(error Error the variable 'MKMK_HOME' is not defined!)
+endif
+
+# Target is C, Executable.
 LANG=C
-include ${MKMK_HOME}/Makefiles/skeleton/skel-${LANG}-C++-EXE.mk
+TYPE=EXE
+
+# Include the skeleton defined for the language
+include ${MKMK_HOME}/Makefiles/skeleton/skel-${LANG}-${TYPE}.mk
+
+# Ensure Makefile wrapper is always up todate
+include ${MKMK_HOME}/Makefiles/rules/rule-Makefile-update.mk

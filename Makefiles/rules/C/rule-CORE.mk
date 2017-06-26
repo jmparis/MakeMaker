@@ -12,14 +12,14 @@ DEPFILES=	$(OBJFILES:.o=.d)
 DEPFLAGS=	-MM -MT '$@'
 DEPEND.c=	$(CC)  $(DEPFLAGS) $(CFLAGS) $(CPPFLAGS) $(TARGET_ARCH)
 
+$(BINDIR)/$(EXE):	$(OBJFILES) | $(BINDIR)
+	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
+
 $(OBJDIR)/%.o:	$(SRCDIR)/%.c | $(OBJDIR)
 	$(COMPILE.c) $(OUTPUT_OPTION) $<
 	$(DEPEND.c) $< > $(DEPDIR)/$*.d
 
 -include $(DEPFILES)
-
-$(BINDIR)/$(EXE):	$(OBJFILES) | $(BINDIR)
-	$(LINK.c) $^ $(LOADLIBES) $(LDLIBS) -o $@
 
 $(OBJDIR):
 	@mkdir	$(OBJDIR)

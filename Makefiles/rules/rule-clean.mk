@@ -12,7 +12,11 @@ DEL_OBJS	=	$(DEL_OBJS_$(V))
 
 ###
 
+ifeq	($(dir $(OBJDIR)), ./)
+DEL_DIRS_C	=	rm -fd	$(OBJDIR) $(DEPDIR) $(BINDIR)
+else
 DEL_DIRS_C	=	rm -fd	$(OBJDIR) $(DEPDIR) $(BINDIR); rm -fd $(sort $(dir $(OBJDIR) $(DEPDIR) $(BINDIR)))
+endif
 DEL_DIRS_0	=	@printf "Removing....: \033[1;31m$(OBJDIR) $(DEPDIR) $(BINDIR)\033[0m\n"; $(DEL_DIRS_C)
 DEL_DIRS_1	=	$(DEL_DIRS_C)
 DEL_DIRS	=	$(DEL_DIRS_$(V))

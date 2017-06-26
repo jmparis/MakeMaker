@@ -4,10 +4,10 @@ SRCDIR	=	$(BASEDIR)/src
 
 GOFILES	=	$(wildcard  $(SRCDIR)/*.go)
 
-.DEFAULT_GOAL := nothing
+.DEFAULT_GOAL := Please_make_run
 
 .IGNORE: run
 run:
 	go run $(GOFILES)
 
-nothing:
+Please_make_run:
