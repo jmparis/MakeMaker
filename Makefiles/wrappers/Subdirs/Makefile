@@ -9,12 +9,12 @@ ifndef	MKMK_HOME
 $(error Error the variable 'MKMK_HOME' is not defined!)
 endif
 
-# Target is Folders, current sub-sub-dir
-LANG=Folders
+# Target is Subdirs
+LANG=Subdirs
 TYPE=.
 
 # Include the skeleton defined for the language
-include ${MKMK_HOME}/Makefiles/rules/Folders/rule-Folders.mk
+include ${MKMK_HOME}/Makefiles/skeleton/skel-Subdirs.mk
 
 # Ensure Makefile wrapper is always up todate
 include ${MKMK_HOME}/Makefiles/rules/rule-Makefile-update.mk

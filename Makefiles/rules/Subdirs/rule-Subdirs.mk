@@ -1,5 +1,6 @@
 TOPTARGETS	:=	clean clobber install uninstall run update
-SUBDIRS		:=	$(sort $(wildcard */.))
+NODIRS		?=
+SUBDIRS		:=	$(sort $(filter-out $(addsuffix /,$(NODIRS)),$(wildcard */)))
 
 PRT_TAB		:=	%$(shell echo \($(MAKELEVEL) + 1 \) \* 2 | bc)b%b
 
@@ -23,8 +24,3 @@ folders_man:
 	@printf $(PRT_TAB) " " "make clean......: to clean all subprojects\n"
 	@printf $(PRT_TAB) " " "make install....: to install subprojects\n"
 	@printf $(PRT_TAB) " " "make uninstall..: to remove subprojects from system\n"
-
-#UPDATE_URL = 'https://raw.githubusercontent.com/jmparis/Makefiles/master/Makefile-folders.mk'
-#include ./.mk/rules/rule-update.mk
-
-include ${MKMK_HOME}/Makefiles/rules/rule-DEFAULT-verbose.mk
