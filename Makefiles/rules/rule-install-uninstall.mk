@@ -8,3 +8,7 @@ install:	$(BINDIR)/$(EXE)
 .PHONY:	uninstall
 uninstall:
 	rm -f	$(DESTDIR)$(PREFIX)/bin/$(EXE)
+
+help::
+	@printf $(PRT_TAB) " " "make install....: to install project\n"
+	@printf $(PRT_TAB) " " "make uninstall..: to remove project from system\n"

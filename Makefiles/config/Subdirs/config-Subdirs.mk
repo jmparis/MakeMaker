@@ -1,0 +1,3 @@
+# Folders to exclude
+NODIRS=
+#

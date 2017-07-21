@@ -1,14 +1,25 @@
 .SUFFIXES:					# Delete the default suffixes
 .SUFFIXES: .o .lst .d .s	# Define our suffix list
 
+# Verbose mode: 0 = Off, 1= On
 V		?=	0
+
+# Helper variables for display
 PRT_TAB	:=	%$(shell echo \($(MAKELEVEL) + 1 \) \* 2 | bc)b%b
+comma	:= ,
+empty	:=
+space	:= $(empty) $(empty)
+tab		:= $(empty)	$(empty)
+.print_r:
+	@printf "\r"
+
 
 
 # -----------------------
 # Compute Folders & Files
 # -----------------------
 BASEDIR	?=	.
+
 SRCDIR	?=	$(BASEDIR)/src
 OBJDIR	?=	$(BASEDIR)/build/obj
 LSTDIR	?=	$(BASEDIR)/build/lst
@@ -50,8 +61,7 @@ COMPILE_S_0	=	@printf "Assembling..: $(OBJDIR)/\033[1;35m$(notdir $@)\033[0m\n";
 COMPILE_S_1	=	$(COMPILE.s)
 COMPILE_S	=	$(COMPILE_S_$(V))
 
-$(OBJDIR)/%.o $(LSTDIR)/%.lst: $(SRCDIR)/%.s | $(OBJDIR) $(LSTDIR) $(DEPDIR)
-	@printf "\r"
+$(OBJDIR)/%.o $(LSTDIR)/%.lst: $(SRCDIR)/%.s | .print_r $(OBJDIR) $(LSTDIR) $(DEPDIR)
 	@printf $(PRT_TAB) " " ""
 	$(COMPILE_S) -o $@ $<
 
@@ -60,23 +70,35 @@ $(OBJDIR)/%.o $(LSTDIR)/%.lst: $(SRCDIR)/%.s | $(OBJDIR) $(LSTDIR) $(DEPDIR)
 # create & clean
 # --------------
 
+CRE_OBJDIR_C	=	mkdir	-p	$(OBJDIR)
+CRE_OBJDIR_0	=	printf "Creating....: \033[1;32m$(OBJDIR)\033[0m\n"; $(CRE_OBJDIR_C)
+CRE_OBJDIR_1	=	printf "mkdir	-p	$(OBJDIR)"; $(CRE_OBJDIR_C); printf "\n"
+CRE_OBJDIR		=	$(CRE_OBJDIR_$(V))
 $(OBJDIR):
 ifneq	($(OBJDIR), .)
-	@mkdir	-p	$(OBJDIR)
-endif
-$(LSTDIR):
-ifneq	($(LSTDIR), .)
-	@mkdir	-p	$(LSTDIR)
-endif
-$(DEPDIR):
-ifneq	($(DEPDIR), .)
-	@mkdir	-p	$(DEPDIR)
+	@printf $(PRT_TAB) " " ""
+	@$(CRE_OBJDIR)
 endif
 
-comma	:= ,
-empty	:=
-space	:= $(empty) $(empty)
-tab		:= $(empty)	$(empty)
+CRE_LSTDIR_C	=	mkdir	-p	$(LSTDIR)
+CRE_LSTDIR_0	=	printf "Creating....: \033[1;32m$(LSTDIR)\033[0m\n"; $(CRE_LSTDIR_C)
+CRE_LSTDIR_1	=	printf "mkdir	-p	$(LSTDIR)"; $(CRE_LSTDIR_C); printf "\n"
+CRE_LSTDIR		=	$(CRE_LSTDIR_$(V))
+$(LSTDIR):
+ifneq	($(LSTDIR), .)
+	@printf $(PRT_TAB) " " ""
+	@$(CRE_LSTDIR)
+endif
+
+CRE_DEPDIR_C	=	mkdir	-p	$(DEPDIR)
+CRE_DEPDIR_0	=	printf "Creating....: \033[1;32m$(DEPDIR)\033[0m\n"; $(CRE_DEPDIR_C)
+CRE_DEPDIR_1	=	printf "mkdir	-p	$(DEPDIR)"; $(CRE_DEPDIR_C); printf "\n"
+CRE_DEPDIR		=	$(CRE_DEPDIR_$(V))
+$(DEPDIR):
+ifneq	($(DEPDIR), .)
+	@printf $(PRT_TAB) " " ""
+	@$(CRE_DEPDIR)
+endif
 
 DEL_OBJFILES_C	=	rm	$(OBJFILES)
 DEL_OBJFILES_0	=	@printf "Removing....: \033[1;35m$(subst $(space),$(tab),$(OBJFILES))\033[0m\n"; $(DEL_OBJFILES_C)
@@ -106,8 +128,7 @@ DEL_ALL_PDIRS_0	=	@printf "Removing....: \033[1;32m$(ALL_DIR_DIRS)\033[0m\n"; $(
 DEL_ALL_PDIRS_1	=	$(DEL_ALL_PDIRS_C)
 DEL_ALL_PDIRS	=	$(DEL_ALL_PDIRS_$(V))
 
-clean:	all
-	@printf "\r"
+clean:	all .print_r
 	@printf $(PRT_TAB) " " ""
 	$(DEL_OBJFILES)
 	@printf $(PRT_TAB) " " ""

@@ -1,4 +1,4 @@
 # C Compiler flags, release mode
-CFLAGS_REL	?=	-O3
+CFLAGS_REL	?=	-O2
 CFLAGS		+=	$(CFLAGS_REL)
 #

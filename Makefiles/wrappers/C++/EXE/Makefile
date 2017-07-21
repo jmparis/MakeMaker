@@ -1,6 +1,6 @@
 #
 # Makefile by MakeMaker
-# 21/06/2017 12:31 CEST
+# 06/07/2017 16:03 CEST
 # C++ Executable wrapper
 #
 
@@ -14,7 +14,7 @@ LANG=C++
 TYPE=EXE
 
 # Include the skeleton defined for the language
-include ${MKMK_HOME}/Makefiles/skeleton/skel-${LANG}-${TYPE}.mk
+include ${MKMK_HOME}/Makefiles/skeletons/${LANG}-${TYPE}.mk
 
 # Ensure Makefile wrapper is always up todate
-include ${MKMK_HOME}/Makefiles/rules/rule-Makefile-update.mk
+include ${MKMK_HOME}/Makefiles/rules/Makefile-update.mk
